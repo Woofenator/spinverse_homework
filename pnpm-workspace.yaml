@@ -1,0 +1,11 @@
+allowBuilds:
+  esbuild: true
+  '@sqliteai/sqlite-vector': true
+  '@openrouter/sdk': set this to true or false
+engineStrict: true
+permissions:
+  '@sveltejs/vite-devtools-svelte':
+    skills: [ vite-devtools-svelte-perf-audit ]
+skills:
+  dirs:
+    - .agent/skills
