@@ -6,11 +6,15 @@ import type { ServerInit } from '@sveltejs/kit/hooks';
 import { eq } from 'drizzle-orm';
 import { setTimeout } from 'node:timers/promises';
 
-const MAX_PAGES = 1;
+const MAX_PAGES = 25;
+const RESEARCHERS_PER_PAGE = 100;
 
 const seedData = async (): Promise<void> => {
 	for (let page = 0; page < MAX_PAGES; page++) {
-		const recordsResponse = await orcidClient.fetchRecords(page * 10, 10);
+		const recordsResponse = await orcidClient.fetchRecords(
+			page * RESEARCHERS_PER_PAGE,
+			RESEARCHERS_PER_PAGE
+		);
 		const records = (await recordsResponse.json()) as {
 			'expanded-result': {
 				'orcid-id': string;
